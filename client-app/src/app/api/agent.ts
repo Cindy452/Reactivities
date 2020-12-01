@@ -23,6 +23,7 @@ const requests = {
     delete: (id: string) => requests.del(`/activities/${id}`)
 }
 
+// eslint-disable-next-line
 export default {
     Activities
 }
