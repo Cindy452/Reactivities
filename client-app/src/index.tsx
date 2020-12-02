@@ -2,15 +2,19 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './app/layout/style.css';
 import App from './app/layout/App';
-import {BrowserRouter} from 'react-router-dom'
+import {Router} from 'react-router-dom';
+import {createBrowserHistory} from 'history'
 import reportWebVitals from './reportWebVitals';
 import ScrollToTop from './app/layout/ScrollToTop';
+import 'react-toastify/dist/ReactToastify.css';
+
+export const history = createBrowserHistory();
 
 ReactDOM.render( 
-    <BrowserRouter>
+    <Router history={history}>
     <ScrollToTop />
     <App /> 
-    </BrowserRouter>,
+    </Router>,
 document.getElementById('root'));
 
 // If you want to start measuring performance in your app, pass a function
