@@ -1,10 +1,10 @@
 using System;
 using System.Net;
-using System.Text.Json;
 using System.Threading.Tasks;
 using Application.Erros;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 namespace API.Middleware
 {
@@ -51,17 +51,13 @@ namespace API.Middleware
             context.Response.ContentType = "application/json";
             if (errors != null)
             {
-                var result = JsonSerializer.Serialize(new 
+                var result = JsonConvert.SerializeObject(new 
                 {
                     errors
                 });
 
                 await context.Response.WriteAsync(result);
             }
-        }
-
-        private class JsonConvert
-        {
         }
     }
 }
