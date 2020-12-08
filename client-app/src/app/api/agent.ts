@@ -4,6 +4,7 @@ import { history } from '../..';
 import { toast } from 'react-toastify';
 import { IUser, IUserFormValues } from '../models/user';
 import { IProfile, IPhoto } from '../models/profile';
+import userEvent from '@testing-library/user-event';
 
 axios.defaults.baseURL = 'http://localhost:5000/api';
 
@@ -72,7 +73,10 @@ const Profiles = {
     uploadPhoto: (photo: Blob): Promise<IPhoto> => requests.postForm(`/photos`, photo),
     setMainPhoto: (id: string) => requests.post(`/photos/${id}/setMain`, {}),
     deletePhoto: (id: string) => requests.del(`/photos/${id}`),
-    updateProfile: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile)
+    updateProfile: (profile: Partial<IProfile>) => requests.put(`/profiles`, profile),
+    follow: (username: string) => requests.post(`/profiles/${username}/follow`, {}),
+    unfollow: (username: string) => requests.del(`/profiles/${username}/follow`),
+    listFollowings: (username: string, predicate: string) => requests.get(`/profiles/${username}/follow?predicate=${predicate}`)
 }
 
  // eslint-disable-next-line
